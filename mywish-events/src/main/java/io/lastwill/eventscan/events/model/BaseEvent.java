@@ -5,8 +5,9 @@ import lombok.Getter;
 
 @Getter
 public class BaseEvent {
+//final private NetworkType networkType;
 
-    public BaseEvent() {
-
-    }
+//public BaseEvent(NetworkType networkType) {
+//    this.networkType = networkType;
+//}
 }

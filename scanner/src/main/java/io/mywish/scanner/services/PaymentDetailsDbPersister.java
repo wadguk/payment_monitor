@@ -1,23 +1,17 @@
 package io.mywish.scanner.services;
 
-import io.lastwill.eventscan.model.LastBlock;
-import io.lastwill.eventscan.model.NetworkType;
-import io.lastwill.eventscan.model.PaymentDetails;
-import io.lastwill.eventscan.repositories.LastBlockRepository;
-import io.lastwill.eventscan.repositories.PaymentMapRepository;
+import io.lastwill.eventscan.repositories.PaymentDucRepository;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-import java.math.BigInteger;
-
 @Slf4j
 public class PaymentDetailsDbPersister implements PaymentDetailsPersister {
-    private final PaymentMapRepository paymentMapRepository;
+    private final PaymentDucRepository paymentDucRepository;
 
     public PaymentDetailsDbPersister(
-            @NonNull PaymentMapRepository paymentMapRepository
+            @NonNull PaymentDucRepository paymentDucRepository
     ) {
-        this.paymentMapRepository = paymentMapRepository;
+        this.paymentDucRepository = paymentDucRepository;
     }
 
 

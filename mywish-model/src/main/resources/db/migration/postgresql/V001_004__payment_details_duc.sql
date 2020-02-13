@@ -1,4 +1,4 @@
-CREATE TABLE payment_details (
+CREATE TABLE payment_details_duc (
   id SERIAL PRIMARY KEY ,
   rx_address VARCHAR(66),
   value NUMERIC (78, 0),

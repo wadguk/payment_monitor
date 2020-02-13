@@ -23,6 +23,7 @@
         <module>blockchain</module>
         <module>blockchain-ducatus</module>
         <module>blockchain-duc</module>
+        <module>blockchain-btc</module>
     </modules>
 
     <properties>

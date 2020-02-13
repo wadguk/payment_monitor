@@ -11,8 +11,10 @@ import org.springframework.util.MultiValueMap;
 public class NewBlockEvent extends BaseEvent {
     private final WrapperBlock block;
     private final MultiValueMap<String, WrapperTransaction> transactionsByAddress;
+    private final NetworkType networkType;
 
-    public NewBlockEvent( WrapperBlock block, MultiValueMap<String, WrapperTransaction> transactionsByAddress) {
+    public NewBlockEvent( NetworkType networkType, WrapperBlock block, MultiValueMap<String, WrapperTransaction> transactionsByAddress) {
+        this.networkType = networkType;
         this.block = block;
         this.transactionsByAddress = transactionsByAddress;
     }

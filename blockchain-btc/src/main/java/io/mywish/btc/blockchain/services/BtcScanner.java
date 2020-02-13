@@ -12,8 +12,8 @@ import org.springframework.util.MultiValueMap;
 import java.util.HashMap;
 
 @Slf4j
-public class DucScanner extends ScannerPolling {
-    public DucScanner(DucNetwork network, LastBlockPersister lastBlockPersister, Long pollingInterval, Integer commitmentChainLength) {
+public class BtcScanner extends ScannerPolling {
+    public BtcScanner(BtcNetwork network, LastBlockPersister lastBlockPersister, Long pollingInterval, Integer commitmentChainLength) {
         super(network, lastBlockPersister, pollingInterval, commitmentChainLength);
     }
 
@@ -38,6 +38,6 @@ public class DucScanner extends ScannerPolling {
 //                    eventPublisher.publish(new NewTransactionEvent(networkType, block, output));
                 });
 
-        eventPublisher.publish(new NewBlockEvent( network.getType(), block, addressTransactions));
+        eventPublisher.publish(new NewBlockEvent(network.getType(), block, addressTransactions));
     }
 }

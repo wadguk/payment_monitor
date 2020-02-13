@@ -1,9 +1,8 @@
 package io.lastwill.eventscan.services.monitors;
 
-;
 import io.lastwill.eventscan.events.PaymentEvent;
 import io.lastwill.eventscan.model.NetworkType;
-import io.lastwill.eventscan.repositories.PaymentDucRepository;
+import io.lastwill.eventscan.repositories.PaymentBtcRepository;
 import io.mywish.blockchain.WrapperOutput;
 import io.mywish.blockchain.WrapperTransaction;
 import io.mywish.scanner.model.NewBlockEvent;
@@ -18,9 +17,9 @@ import java.util.Set;
 
 @Slf4j
 @Component
-public class DucPaymentMonitor {
+public class BtcPaymentMonitor {
     @Autowired
-    private PaymentDucRepository paymentDucRepository;
+    private PaymentBtcRepository paymentBtcRepository;
     @Autowired
     private EventPublisher eventPublisher;
 
@@ -33,15 +32,13 @@ public class DucPaymentMonitor {
         if (addresses.isEmpty()) {
             return;
         }
-        paymentDucRepository.findAll()
+        paymentBtcRepository.findByRxAddress(addresses)
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
-                        //log.warn("There is no PaymentDetails entity found for DUC address {}.", paymentDetails.getRxAddress());
+                        //log.warn("There is no UserSiteBalance entity found for BTC address {}.", userSiteBalance.getRxAddress());
                         return;
                     }
-
-
                     for (WrapperTransaction tx: txes) {
                         for (WrapperOutput output: tx.getOutputs()) {
                             if (output.getParentTransaction() == null) {
@@ -52,11 +49,9 @@ public class DucPaymentMonitor {
                                 continue;
                             }
 
-                            log.warn("VALUE: {}", output.getValue());
-                            log.warn("VALUE: {}", paymentDetails.getValue());
-
                             if (output.getValue().equals(paymentDetails.getValue())) {
                                 log.warn("\u001B[32m"+ "{} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
+
                                 eventPublisher.publish(
                                         new PaymentEvent(
                                                 tx,
@@ -65,9 +60,8 @@ public class DucPaymentMonitor {
                                                 "true"
                                         ));
 
-                                paymentDucRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
+                                paymentBtcRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
                             }
-
                         }
                     }
                 });
