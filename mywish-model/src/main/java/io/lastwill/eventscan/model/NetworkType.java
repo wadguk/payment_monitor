@@ -8,11 +8,17 @@ public enum NetworkType {
     DUC_MAINNET(NetworkProviderType.DUC),
     DUC_SAVE(NetworkProviderType.DUC),
     BTC_MAINNET(NetworkProviderType.BTC),
+    BTC_TESTNET_3(NetworkProviderType.BTC),
+    ETHEREUM_MAINNET(NetworkProviderType.WEB3),
+    ETHEREUM_ROPSTEN(NetworkProviderType.WEB3),
 ;
 
     public final static String DUC_MAINNET_VALUE = "DUC_MAINNET";
     public final static String DUC_SAVE_VALUE = "DUC_SAVE";
     public final static String BTC_MAINNET_VALUE = "BTC_MAINNET";
+    public final static String BTC_TESTNET_3_VALUE = "BTC_TESTNET_3";
+    public final static String ETHEREUM_MAINNET_VALUE = "ETHEREUM_MAINNET";
+    public final static String ETHEREUM_ROPSTEN_VALUE = "ETHEREUM_ROPSTEN";
 
     private final NetworkProviderType networkProviderType;
 

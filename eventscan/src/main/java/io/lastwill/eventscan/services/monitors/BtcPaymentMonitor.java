@@ -50,7 +50,6 @@ public class BtcPaymentMonitor {
                             }
 
                             if (output.getValue().equals(paymentDetails.getValue())) {
-                                log.warn("\u001B[32m"+ "{} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
 
                                 eventPublisher.publish(
                                         new PaymentEvent(
@@ -61,6 +60,7 @@ public class BtcPaymentMonitor {
                                         ));
 
                                 paymentBtcRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
+                                log.warn("\u001B[32m"+ "PAYMENT {} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
                             }
                         }
                     }

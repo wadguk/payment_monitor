@@ -16,8 +16,8 @@
         <db-user>ducatus</db-user>
         <db-password>ducatus</db-password>
         <web3-base-url>http://localhost:8545/</web3-base-url>
-        <backend-base-url>http://demo.mywillplatform.io/api/v1/payment_notify</backend-base-url>
-        <token-address>0x1b22c32cd936cb97c28c5690a0695a82abf688e6</token-address>
+<!--        <backend-base-url>http://demo.mywillplatform.io/api/v1/payment_notify</backend-base-url>-->
+<!--        <token-address>0x1b22c32cd936cb97c28c5690a0695a82abf688e6</token-address>-->
     </properties>
 
     <dependencies>
@@ -46,14 +46,20 @@
             <artifactId>blockchain</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>blockchain-ducatus</artifactId>
+            <artifactId>blockchain-duc</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>blockchain-duc</artifactId>
+            <artifactId>blockchain-btc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blockchain-web3</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -115,17 +121,17 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.web3j</groupId>
-            <artifactId>console</artifactId>
-            <version>${web3j.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-nop</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.web3j</groupId>-->
+<!--            <artifactId>console</artifactId>-->
+<!--            <version>${web3j.version}</version>-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.slf4j</groupId>-->
+<!--                    <artifactId>slf4j-nop</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.github.devcsrj</groupId>
             <artifactId>slf4j-okhttp3-logging-interceptor</artifactId>
