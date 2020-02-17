@@ -62,7 +62,16 @@
             <artifactId>blockchain-web3</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blockchain-ltc</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blockchain-bch</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!--<dependency>-->
         <!--<groupId>${project.groupId}</groupId>-->
         <!--<artifactId>joule</artifactId>-->

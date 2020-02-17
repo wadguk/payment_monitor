@@ -1,9 +1,8 @@
 package io.lastwill.eventscan.services.monitors;
 
-;
 import io.lastwill.eventscan.events.PaymentEvent;
 import io.lastwill.eventscan.model.NetworkType;
-import io.lastwill.eventscan.repositories.PaymentDucRepository;
+import io.lastwill.eventscan.repositories.PaymentLtcRepository;
 import io.mywish.blockchain.WrapperOutput;
 import io.mywish.blockchain.WrapperTransaction;
 import io.mywish.scanner.model.NewBlockEvent;
@@ -16,24 +15,26 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 
+;
+
 @Slf4j
 @Component
-public class DucPaymentMonitor {
+public class LtcPaymentMonitor {
     @Autowired
-    private PaymentDucRepository paymentDucRepository;
+    private PaymentLtcRepository paymentLtcRepository;
     @Autowired
     private EventPublisher eventPublisher;
 
     @EventListener
     private void handleBtcBlock(NewBlockEvent event) {
-        if (event.getNetworkType() != NetworkType.DUC_MAINNET) {
+        if (event.getNetworkType() != NetworkType.LTC_MAINNET) {
             return;
         }
         Set<String> addresses = event.getTransactionsByAddress().keySet();
         if (addresses.isEmpty()) {
             return;
         }
-        paymentDucRepository.findAll()
+        paymentLtcRepository.findAll()
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
@@ -64,7 +65,7 @@ public class DucPaymentMonitor {
                                                 "true"
                                         ));
 
-                                paymentDucRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
+                                paymentLtcRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
                                 log.warn("\u001B[32m"+ "PAYMENT {} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
                             }
 

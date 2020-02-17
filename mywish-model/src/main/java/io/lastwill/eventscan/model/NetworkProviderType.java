@@ -4,5 +4,7 @@ public enum NetworkProviderType {
     WEB3,
     DAPS,
     DUC,
-    BTC
+    BTC,
+    LTC,
+    BCH
 }

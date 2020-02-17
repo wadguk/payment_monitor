@@ -24,6 +24,8 @@
         <module>blockchain-duc</module>
         <module>blockchain-btc</module>
         <module>blockchain-web3</module>
+        <module>blockchain-ltc</module>
+        <module>blockchain-bch</module>
     </modules>
 
     <properties>
