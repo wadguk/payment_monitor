@@ -13,8 +13,8 @@ import java.util.List;
 
 public interface PaymentBtcRepository extends CrudRepository<PaymentDetailsBTC, Long> {
 
-    @Query("select c from PaymentDetailsBTC c where c.rxAddress in :rxAddress")
-    List<PaymentDetailsBTC> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress);
+    @Query("select c from PaymentDetailsBTC c where c.rxAddress  in :rxAddress and c.status = :status")
+    List<PaymentDetailsBTC> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress,@Param("status") String status);
 
     @Modifying
     @Transactional

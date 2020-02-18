@@ -13,8 +13,8 @@ import java.util.List;
 
 public interface PaymentEthRepository extends CrudRepository<PaymentDetailsETH, Long> {
 
-    @Query("select c from PaymentDetailsETH c where c.rxAddress in :rxAddress")
-    List<PaymentDetailsETH> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress);
+    @Query("select c from PaymentDetailsETH c where c.rxAddress in :rxAddress and c.status = :status")
+    List<PaymentDetailsETH> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress, @Param("status") String status);
 
     @Modifying
     @Transactional

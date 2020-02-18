@@ -42,14 +42,14 @@ public class EthPaymentMonitor {
             return;
         }
 
-        List<PaymentDetailsETH> paymentDetails = paymentEthRepository.findByRxAddress(addresses);
+        List<PaymentDetailsETH> paymentDetails = paymentEthRepository.findByRxAddress(addresses, "false");
         for (PaymentDetailsETH paymentDetailsETH : paymentDetails) {
             final List<WrapperTransaction> transactions = event.getTransactionsByAddress().get(
                     paymentDetailsETH.getRxAddress().toLowerCase()
             );
 
             if (transactions == null) {
-                log.error("User {} received from DB, but was not found in transaction list (block {}).", paymentDetailsETH, event.getBlock().getNumber());
+                log.error("User {} received from DB, but was not found in transaction list (block    {}).", paymentDetailsETH, event.getBlock().getNumber());
                 continue;
             }
 

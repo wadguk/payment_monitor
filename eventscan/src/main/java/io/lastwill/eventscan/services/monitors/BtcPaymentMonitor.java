@@ -32,7 +32,7 @@ public class BtcPaymentMonitor {
         if (addresses.isEmpty()) {
             return;
         }
-        paymentBtcRepository.findByRxAddress(addresses)
+        paymentBtcRepository.findByRxAddress(addresses,"false")
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
@@ -48,6 +48,9 @@ public class BtcPaymentMonitor {
                             if (!output.getAddress().equalsIgnoreCase(paymentDetails.getRxAddress())) {
                                 continue;
                             }
+
+                            log.warn("VALUE: {}", output.getValue());
+                            log.warn("VALUE: {}", paymentDetails.getValue());
 
                             if (output.getValue().equals(paymentDetails.getValue())) {
 

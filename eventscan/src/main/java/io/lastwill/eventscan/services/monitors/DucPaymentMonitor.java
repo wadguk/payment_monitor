@@ -33,7 +33,7 @@ public class DucPaymentMonitor {
         if (addresses.isEmpty()) {
             return;
         }
-        paymentDucRepository.findAll()
+        paymentDucRepository.findByRxAddress(addresses,"false")
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {

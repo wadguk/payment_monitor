@@ -34,7 +34,7 @@ public class LtcPaymentMonitor {
         if (addresses.isEmpty()) {
             return;
         }
-        paymentLtcRepository.findAll()
+        paymentLtcRepository.findByRxAddress(addresses,"false")
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
@@ -54,7 +54,7 @@ public class LtcPaymentMonitor {
                             }
 
                             log.warn("VALUE: {}", output.getValue());
-                            log.warn("VALUE: {}", paymentDetails.getValue());
+                             log.warn("VALUE: {}", paymentDetails.getValue());
 
                             if (output.getValue().equals(paymentDetails.getValue())) {
                                 eventPublisher.publish(

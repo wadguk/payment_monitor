@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface PaymentDucRepository extends CrudRepository<PaymentDetailsDUC, Long> {
 
-    @Query("select c from PaymentDetailsDUC c where c.rxAddress in :rxAddress")
-    List<PaymentDetailsDUC> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress);
+    @Query("select c from PaymentDetailsDUC c where c.rxAddress in :rxAddress and c.status = :status")
+    List<PaymentDetailsDUC> findByRxAddress(@Param("rxAddress") Collection<String> rxAddress, @Param("status") String status);
 
     @Modifying
     @Transactional
