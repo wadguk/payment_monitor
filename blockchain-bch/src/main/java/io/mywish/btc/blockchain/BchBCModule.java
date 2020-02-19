@@ -128,7 +128,7 @@ public class BchBCModule {
 
     @ConditionalOnBean(name = NetworkType.BCH_MAINNET_VALUE)
     @Bean
-    public BchScanner btcScannerMain(
+    public BchScanner bchScannerMain(
             final @Qualifier(NetworkType.BCH_MAINNET_VALUE) BchNetwork network,
             final @Qualifier("bchMainnetLastBlockPersister") LastBlockPersister lastBlockPersister,
             final @Value("${etherscanner.bch.polling-interval-ms}") Long pollingInterval,

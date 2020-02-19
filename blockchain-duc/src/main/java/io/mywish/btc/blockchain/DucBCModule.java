@@ -29,7 +29,7 @@ public class DucBCModule {
     @Bean
     @ConditionalOnProperty("etherscanner.ducatus.rpc-url.mainnet")
     @ConditionalOnClass(CloseableHttpClient.class)
-    public BtcdClient btcdClient(
+    public BtcdClient ducdClient(
             final CloseableHttpClient closeableHttpClient,
             final @Value("${etherscanner.ducatus.rpc-url.mainnet}") URI rpc)
             throws BitcoindException, CommunicationException {
@@ -55,8 +55,8 @@ public class DucBCModule {
     @ConditionalOnProperty("etherscanner.ducatus.rpc-url.mainnet")
     @Bean(name = NetworkType.DUC_MAINNET_VALUE)
     public DucNetwork ducNetMain(
-            BtcdClient btcdClient) {
-        return new DucNetwork(NetworkType.DUC_MAINNET, btcdClient, new DucatusNetworkParams());
+            BtcdClient ducdClient) {
+        return new DucNetwork(NetworkType.DUC_MAINNET, ducdClient, new DucatusNetworkParams());
     }
 
 //    @ConditionalOnProperty("etherscanner.ducatus.rpc-url.mainnet")

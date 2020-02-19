@@ -29,7 +29,7 @@ public class LtcBCModule {
     @Bean
     @ConditionalOnProperty("etherscanner.ltc.rpc-url.mainnet")
     @ConditionalOnClass(CloseableHttpClient.class)
-    public BtcdClient btcdClient(
+    public BtcdClient ltcdClient(
             final CloseableHttpClient closeableHttpClient,
             final @Value("${etherscanner.ltc.rpc-url.mainnet}") URI rpc)
             throws BitcoindException, CommunicationException {
@@ -54,9 +54,9 @@ public class LtcBCModule {
 
     @ConditionalOnProperty("etherscanner.ltc.rpc-url.mainnet")
     @Bean(name = NetworkType.LTC_MAINNET_VALUE)
-    public LtcNetwork ducNetMain(
-            BtcdClient btcdClient) {
-        return new LtcNetwork(NetworkType.LTC_MAINNET, btcdClient, new LtcNetworkParams());
+    public LtcNetwork ltcNetMain(
+            BtcdClient ltcdClient) {
+        return new LtcNetwork(NetworkType.LTC_MAINNET, ltcdClient, new LtcNetworkParams());
     }
 
 //    @ConditionalOnProperty("etherscanner.ducatus.rpc-url.mainnet")
@@ -99,7 +99,7 @@ public class LtcBCModule {
 
     @ConditionalOnBean(name = NetworkType.LTC_MAINNET_VALUE)
     @Bean
-    public LtcScanner ducScannerMain(
+    public LtcScanner ltcScannerMain(
             final @Qualifier(NetworkType.LTC_MAINNET_VALUE) LtcNetwork network,
             final @Qualifier("ltcMainnetLastBlockPersister") LastBlockPersister lastBlockPersister,
             final @Value("${etherscanner.ltc.polling-interval-ms}") Long pollingInterval,
