@@ -22,9 +22,9 @@ public class LtcNetwork extends WrapperNetwork {
     @Autowired
     private LtcBlockParser ltcBlockParser;
 
-    public LtcNetwork(NetworkType type, BtcdClient ducdClient, NetworkParameters networkParameters) {
+    public LtcNetwork(NetworkType type, BtcdClient ltcdClient, NetworkParameters networkParameters) {
         super(type);
-        this.ltcdClient = ducdClient;
+        this.ltcdClient = ltcdClient;
         this.networkParameters = networkParameters;
     }
 
