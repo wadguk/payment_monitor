@@ -49,7 +49,11 @@
             <version>f907b55</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.wadguk</groupId>
+            <artifactId>bitcoin-cash-converter</artifactId>
+            <version>4016d5b</version>
+        </dependency>
     </dependencies>
 
 

@@ -132,9 +132,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.sealedtx</groupId>
+            <groupId>com.github.wadguk</groupId>
             <artifactId>bitcoin-cash-converter</artifactId>
-            <version>1.0</version>
+            <version>4016d5b</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.web3j</groupId>-->

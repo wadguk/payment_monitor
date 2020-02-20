@@ -33,24 +33,14 @@ public class  BchPaymentMonitor {
         }
 
         Set<String> addresses = event.getTransactionsByAddress().keySet();
-//        log.warn("\u001B[32m"+ " Output {} ."+ "\u001B[0m", addresses);
         if (addresses.isEmpty()) {
             return;
         }
 
-        Set<String> cashAddresses = new HashSet<String>() ;
-        for(String temp : addresses){
-//            log.warn("\u001B[32m"+ " {} " + "\u001B[0m",temp);
-//            log.warn("\u001B[32m"+ " {} " + "\u001B[0m", AddressConverter.toCashAddress(temp).replace("bitcoincash:",""));
-            cashAddresses.add(AddressConverter.toCashAddress(temp).replace("bitcoincash:",""));
-        }
 
-
-        log.warn(" Output {} .", cashAddresses);
-
-        paymentBchRepository.findByRxAddress(cashAddresses,"false")
+        paymentBchRepository.findByRxAddress(addresses,"false")
                 .forEach(paymentDetails -> {
-                    List<WrapperTransaction> txes = event.getTransactionsByAddress().get(AddressConverter.toLegacyAddress(paymentDetails.getRxAddress()));
+                    List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
                         //log.warn("There is no UserSiteBalance entity found for BTC address {}.", userSiteBalance.getRxAddress());
                         return;
@@ -62,15 +52,9 @@ public class  BchPaymentMonitor {
                                 continue;
                             }
 
-                            //log.warn(" Output {} .", output);
-                            String output_address = AddressConverter.toCashAddress(output.getAddress()).replace("bitcoincash:","");
-                            log.warn(" Output {} ", output_address);
-                            if (!output_address.equalsIgnoreCase(paymentDetails.getRxAddress())) {
+                            if (!output.getAddress().equalsIgnoreCase(paymentDetails.getRxAddress())) {
                                 continue;
                             }
-//                            if (!output.getAddress().equalsIgnoreCase(paymentDetails.getRxAddress())) {
-//                                continue;
-//                            }
 
                             log.warn("VALUE: {}", output.getValue());
                             log.warn("VALUE: {}", paymentDetails.getValue());

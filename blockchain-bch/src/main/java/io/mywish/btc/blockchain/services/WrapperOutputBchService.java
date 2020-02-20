@@ -1,5 +1,6 @@
 package io.mywish.btc.blockchain.services;
 
+import com.github.kiulian.converter.AddressConverter;
 import io.mywish.blockchain.WrapperOutput;
 import lombok.extern.slf4j.Slf4j;
 import org.bitcoinj.core.NetworkParameters;
@@ -36,10 +37,10 @@ public class WrapperOutputBchService {
         }
         String address;
         try {
-            address = output
+            address = AddressConverter.toCashAddress(output
                     .getScriptPubKey()
                     .getToAddress(networkParameters, true)
-                    .toBase58();
+                    .toBase58());
 
         }
         catch (Exception e) {
