@@ -64,7 +64,6 @@ public class DucPaymentMonitor {
                                                 "true"
                                         ));
 
-                                paymentDucRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
                                 log.warn("\u001B[32m"+ "PAYMENT {} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
                             }
 

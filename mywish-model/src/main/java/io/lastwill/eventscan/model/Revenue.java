@@ -11,12 +11,12 @@ import java.math.BigInteger;
 
 @Entity
 @Setter
-@Table(name = "payment_details_eth")
+@Table(name = "payment_requests_merchantshop")
 @Getter
-public class PaymentDetailsETH {
+public class Revenue {
     @Id
     private int id;
-    @Column(name = "rx_address")
+    @Column(name = "duc_address")
     private String rxAddress;
     @Column(name = "value")
     private BigInteger value;
@@ -26,5 +26,5 @@ public class PaymentDetailsETH {
     private String status;
 
 
-public PaymentDetailsETH() {}
+public Revenue() {}
 }

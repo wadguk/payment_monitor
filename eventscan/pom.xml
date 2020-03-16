@@ -152,6 +152,11 @@
             <artifactId>slf4j-okhttp3-logging-interceptor</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbitmq.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>

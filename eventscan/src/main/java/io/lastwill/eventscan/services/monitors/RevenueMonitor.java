@@ -2,7 +2,7 @@ package io.lastwill.eventscan.services.monitors;
 
 import io.lastwill.eventscan.events.PaymentEvent;
 import io.lastwill.eventscan.model.NetworkType;
-import io.lastwill.eventscan.repositories.PaymentBtcRepository;
+import io.lastwill.eventscan.repositories.RevenueRepository;
 import io.mywish.blockchain.WrapperOutput;
 import io.mywish.blockchain.WrapperTransaction;
 import io.mywish.scanner.model.NewBlockEvent;
@@ -15,30 +15,34 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 
+;
+
 @Slf4j
 @Component
-public class BtcPaymentMonitor {
+public class RevenueMonitor {
     @Autowired
-    private PaymentBtcRepository paymentBtcRepository;
+    private RevenueRepository revenueRepository;
     @Autowired
     private EventPublisher eventPublisher;
 
     @EventListener
     private void handleBtcBlock(NewBlockEvent event) {
-        if (event.getNetworkType() != NetworkType.BTC_MAINNET) {
+        if (event.getNetworkType() != NetworkType.DUC_MAINNET) {
             return;
         }
         Set<String> addresses = event.getTransactionsByAddress().keySet();
         if (addresses.isEmpty()) {
             return;
         }
-        paymentBtcRepository.findByRxAddress(addresses,"false")
+        revenueRepository.findByRxAddress(addresses,"false")
                 .forEach(paymentDetails -> {
                     List<WrapperTransaction> txes = event.getTransactionsByAddress().get(paymentDetails.getRxAddress());
                     if (txes == null) {
-                        //log.warn("There is no UserSiteBalance entity found for BTC address {}.", userSiteBalance.getRxAddress());
+                        //log.warn("There is no PaymentDetails entity found for DUC address {}.", paymentDetails.getRxAddress());
                         return;
                     }
+
+
                     for (WrapperTransaction tx: txes) {
                         for (WrapperOutput output: tx.getOutputs()) {
                             if (output.getParentTransaction() == null) {
@@ -53,7 +57,6 @@ public class BtcPaymentMonitor {
                             log.warn("VALUE: {}", paymentDetails.getValue());
 
                             if (output.getValue().equals(paymentDetails.getValue())) {
-
                                 eventPublisher.publish(
                                         new PaymentEvent(
                                                 tx,
@@ -62,9 +65,9 @@ public class BtcPaymentMonitor {
                                                 "true"
                                         ));
 
-                                paymentBtcRepository.updatePaymentStatus( paymentDetails.getRxAddress(),"true");
                                 log.warn("\u001B[32m"+ "PAYMENT {} STATUS UPDATED!" + "\u001B[0m",output.getAddress());
                             }
+
                         }
                     }
                 });
