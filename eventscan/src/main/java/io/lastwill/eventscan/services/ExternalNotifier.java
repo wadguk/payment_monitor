@@ -7,5 +7,4 @@ import io.lastwill.eventscan.model.NetworkType;
 public interface ExternalNotifier {
     void send(final NetworkType networkType, final BaseNotify notify);
 
-    void send(PaymentNotify paymentNotify);
 }

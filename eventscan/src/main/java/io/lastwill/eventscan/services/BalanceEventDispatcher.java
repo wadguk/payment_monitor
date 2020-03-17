@@ -3,6 +3,7 @@ package io.lastwill.eventscan.services;
 import io.lastwill.eventscan.events.PaymentEvent;
 import io.lastwill.eventscan.messages.PaymentNotify;
 import io.lastwill.eventscan.messages.PaymentStatus;
+import io.lastwill.eventscan.model.NetworkType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -20,6 +21,7 @@ public class BalanceEventDispatcher {
     private void balanceChangedHandler(final PaymentEvent event) {
         try {
             externalNotifier.send(
+                    NetworkType.DUC_MAINNET,
                     new PaymentNotify(
                             event.getRxAddress(),
                             event.getRxAddress(), //TO DO

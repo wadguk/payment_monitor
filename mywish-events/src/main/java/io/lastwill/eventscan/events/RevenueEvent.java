@@ -7,13 +7,13 @@ import lombok.Getter;
 import java.math.BigInteger;
 
 @Getter
-public class RevenuetEvent extends BaseEvent {
+public class RevenueEvent extends BaseEvent {
     private final WrapperTransaction transaction;
     private final String rxAddress;
     private final BigInteger amount;
     private final String status;
 
-    public RevenuetEvent(WrapperTransaction transaction, String rxAddress, BigInteger amount, String status) {
+    public RevenueEvent(WrapperTransaction transaction, String rxAddress, BigInteger amount, String status) {
         this.transaction = transaction;
         this.rxAddress = rxAddress;
         this.amount = amount;

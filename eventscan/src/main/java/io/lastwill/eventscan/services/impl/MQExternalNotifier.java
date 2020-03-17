@@ -9,6 +9,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import io.lastwill.eventscan.messages.BaseNotify;
 //import io.lastwill.eventscan.messages.Ping;
+import io.lastwill.eventscan.messages.PaymentNotify;
 import io.lastwill.eventscan.model.NetworkType;
 import io.lastwill.eventscan.services.ExternalNotifier;
 import lombok.extern.slf4j.Slf4j;
@@ -116,6 +117,7 @@ public class MQExternalNotifier implements ExternalNotifier {
         }
         send(queueName, notify);
     }
+
 
     protected synchronized void send(String queueName, BaseNotify notify) {
         try {

@@ -1,9 +1,9 @@
 package io.lastwill.eventscan.services;
 
-import io.lastwill.eventscan.events.PaymentEvent;
-import io.lastwill.eventscan.events.RevenuetEvent;
+import io.lastwill.eventscan.events.RevenueEvent;
 import io.lastwill.eventscan.messages.PaymentNotify;
 import io.lastwill.eventscan.messages.PaymentStatus;
+import io.lastwill.eventscan.model.NetworkType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -18,9 +18,10 @@ public class RevenueEventDispatcher {
     private ExternalNotifier externalNotifier;
 
     @EventListener
-    private void balanceChangedHandler(final RevenuetEvent event) {
+    private void balanceChangedHandler(final RevenueEvent event) {
         try {
             externalNotifier.send(
+                    NetworkType.DUC_MAINNET,
                     new PaymentNotify(
                             event.getRxAddress(),
                             event.getRxAddress(), //TO DO
