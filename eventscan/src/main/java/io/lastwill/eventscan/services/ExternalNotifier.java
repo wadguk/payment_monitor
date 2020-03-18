@@ -1,7 +1,6 @@
 package io.lastwill.eventscan.services;
 
 import io.lastwill.eventscan.messages.BaseNotify;
-import io.lastwill.eventscan.messages.PaymentNotify;
 import io.lastwill.eventscan.model.NetworkType;
 
 public interface ExternalNotifier {

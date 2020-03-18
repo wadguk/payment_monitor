@@ -10,12 +10,12 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Setter
-@Table(name = "payment_details_duc")
+@Table(name = "payment_requests_paymentrequest")
 @Getter
 public class PaymentDetailsDUC {
     @Id
     private int id;
-    @Column(name = "rx_address")
+    @Column(name = "duc_address")
     private String rxAddress;
     @Column(name = "value")
     private BigInteger value;
@@ -25,5 +25,6 @@ public class PaymentDetailsDUC {
     private String status;
 
 
-public PaymentDetailsDUC() {}
+    public PaymentDetailsDUC() {}
 }
+
